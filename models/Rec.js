@@ -20,6 +20,10 @@ const RecSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+  },
 });
 
 module.exports = mongoose.model('Recs', RecSchema);

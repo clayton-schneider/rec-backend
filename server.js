@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const colors = require('colors');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const cors = require('cors');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
@@ -19,6 +20,7 @@ const passportSetup = require('./config/passport');
 // Route files
 const recs = require('./routes/recs');
 const auth = require('./routes/auth');
+const user = require('./routes/user');
 
 const app = express();
 
@@ -32,6 +34,10 @@ app.use(
     keys: [process.env.COOKIE_KEY],
   })
 );
+
+// Enable CORS
+app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -41,6 +47,7 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 // mount routers
 app.use('/api/v1/recs', recs);
 app.use('/api/v1/auth', auth);
+app.use('/api/v1/user', user);
 
 app.use(errorHandler);
 

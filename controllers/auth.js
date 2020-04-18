@@ -19,7 +19,7 @@ exports.linkedin = passport.authenticate('linkedin', { prompt: 'force' });
 // GET /api/v1/auth/linkedin/redirect
 // Public
 exports.linkedinRedirect = asyncHandler(async (req, res) => {
-  res.redirect('/api/v1/auth/me');
+  res.redirect(`${process.env.SPA_URL}/dashboard`);
 });
 
 // Get current logged in user
