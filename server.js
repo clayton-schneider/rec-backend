@@ -9,7 +9,7 @@ const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
 // Load env vars
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   dotenv.config({ path: './config/config.env' });
 }
 

@@ -4,7 +4,7 @@
   "description": "Rec backend API",
   "main": "server.js",
   "scripts": {
-    "build": "node server",
+    "start": "node server",
     "dev": "nodemon server"
   },
   "author": "Clayton Schneider",
