@@ -38,7 +38,7 @@ app.use(
 );
 
 // Enable CORS
-app.use(cors({ credentials: true, origin: 'http://localhost:8080' }));
+app.use(cors({ credentials: true, origin: `${process.env.SPA_URL}` }));
 
 app.use(passport.initialize());
 app.use(passport.session());
