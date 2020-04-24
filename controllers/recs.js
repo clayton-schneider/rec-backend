@@ -43,12 +43,18 @@ exports.createRec = asyncHandler(async (req, res, next) => {
   req.body.user = req.user.id;
 
   const rec = await Rec.create(req.body);
+  let message;
 
-  const message = `<p>Hello ${rec.authorName},
-  ${req.user.name} is requesting that you write them a letter of recommendation.
-  You can submit the recommendation at the below link</p>
-  <a href=${process.env.SPA_URL}/recommend/${rec.id}>Click Here</a>
-  `;
+  if (req.body.message) {
+    message = `<p>${req.body.message}</p>
+    <a href=${process.env.SPA_URL}/recommend/${rec.id}>Click Here</a>`;
+  } else {
+    message = `<p>Hello ${rec.authorName},
+    ${req.user.name} is requesting that you write them a letter of recommendation.
+    You can submit the recommendation at the below link</p>
+    <a href=${process.env.SPA_URL}/recommend/${rec.id}>Click Here</a>
+    `;
+  }
 
   try {
     await sendEmail({
