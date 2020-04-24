@@ -6,6 +6,7 @@ const {
   updateRec,
   deleteRec,
   sendRec,
+  readFile,
 } = require('../controllers/recs');
 const { protect } = require('../middleware/auth');
 
@@ -16,5 +17,7 @@ router.route('/').get(getRecs).post(createRec);
 router.route('/:id').get(getRec).put(updateRec).delete(deleteRec);
 
 router.post('/send/:id', protect, sendRec);
+
+router.post('/read-file', readFile);
 
 module.exports = router;

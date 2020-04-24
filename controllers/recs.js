@@ -1,3 +1,4 @@
+const pdf = require('pdf-parse');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const Rec = require('../models/Rec');
@@ -132,4 +133,17 @@ exports.sendRec = asyncHandler(async (req, res, next) => {
   } catch (err) {
     return next(new ErrorResponse('Email could not be sent', 500));
   }
+});
+
+// Get contents of PDF
+// POST /api/v1/recs/read-file
+// Private
+exports.readFile = asyncHandler(async (req, res, next) => {
+  if (!req.files) return next(new ErrorResponse('Please upload a file', 400));
+
+  const file = req.files.file;
+
+  const fileData = await pdf(file.data);
+
+  res.status(200).json({ success: true, data: fileData.text });
 });

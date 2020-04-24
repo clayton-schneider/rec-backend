@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
+const fileupload = require('express-fileupload');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const cors = require('cors');
@@ -45,6 +46,8 @@ app.use(passport.session());
 
 // dev logging middleware
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
+
+app.use(fileupload());
 
 // mount routers
 app.use('/api/v1/recs', recs);
