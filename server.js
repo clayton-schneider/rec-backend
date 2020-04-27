@@ -24,6 +24,7 @@ const passportSetup = require('./config/passport');
 const recs = require('./routes/recs');
 const auth = require('./routes/auth');
 const user = require('./routes/user');
+const payments = require('./routes/payments');
 
 const app = express();
 
@@ -53,6 +54,7 @@ app.use(fileupload());
 app.use('/api/v1/recs', recs);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/user', user);
+app.use('/api/v1/payments', payments);
 
 app.use(errorHandler);
 
