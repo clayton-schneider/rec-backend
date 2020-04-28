@@ -114,7 +114,7 @@ exports.sendRec = asyncHandler(async (req, res, next) => {
     );
 
   req.user.credits -= 1;
-  await req.user.save();
+  const user = await req.user.save();
 
   const message = `Hello ${toName},
     ${aboutPerson.name} has sent you a recommendation that was written by ${rec.authorName}.
@@ -129,7 +129,7 @@ exports.sendRec = asyncHandler(async (req, res, next) => {
       subject: `Letter of recommendation for ${aboutPerson.name}`,
       message,
     });
-    res.status(200).json({ success: true, data: 'email sent' });
+    res.status(200).json({ success: true, data: user });
   } catch (err) {
     return next(new ErrorResponse('Email could not be sent', 500));
   }

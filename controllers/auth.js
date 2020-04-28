@@ -1,6 +1,7 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const passport = require('passport');
+const axios = require('axios');
 
 // Logout user
 // GET /api/v1/auth/logout
