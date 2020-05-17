@@ -51,5 +51,8 @@ const addImage = async token => {
   );
   const profilePicture =
     data.profilePicture['displayImage~'].elements[0].identifiers[0].identifier;
+  if (!profilePicture)
+    profilePicture =
+      'https://cdn.iconscout.com/icon/free/png-512/account-profile-avatar-man-circle-round-user-30452.png';
   return profilePicture;
 };
