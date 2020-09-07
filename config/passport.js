@@ -5,13 +5,11 @@ const asyncHandler = require('../middleware/async');
 const axios = require('axios');
 
 passport.serializeUser((user, done) => {
-  console.log('running serialize:', user.id);
   done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
   const user = await User.findById(id).populate('recs');
-  console.log('running deserialize', user);
   done(null, user);
 });
 
