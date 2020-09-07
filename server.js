@@ -32,6 +32,7 @@ const app = express();
 app.use(express.json());
 
 // Cookie setup
+app.enable('trust proxy');
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
